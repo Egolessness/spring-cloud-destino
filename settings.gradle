@@ -1,0 +1,6 @@
+rootProject.name = 'spring-cloud-destino'
+include 'spring-cloud-starter-destino-discovery'
+include 'spring-cloud-starter-destino-context'
+include 'spring-cloud-starter-destino-scheduling'
+include 'spring-cloud-destino-dependencies'
+

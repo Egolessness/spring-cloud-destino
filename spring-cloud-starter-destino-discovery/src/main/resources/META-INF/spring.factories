@@ -1,0 +1,10 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.egolessness.cloud.DestinoDiscoveryAutoConfiguration,\
+  org.egolessness.cloud.registry.DestinoServiceRegistryAutoConfiguration,\
+  org.egolessness.cloud.discovery.DestinoDiscoveryClientConfiguration,\
+  org.egolessness.cloud.endpoint.DestinoDiscoveryEndpointAutoConfiguration,\
+  org.egolessness.cloud.registry.DestinoServiceRegistryAutoConfiguration,\
+  org.egolessness.cloud.discovery.refresh.DestinoDiscoveryHeartbeatConfiguration,\
+  org.egolessness.cloud.discovery.reactive.DestinoReactiveDiscoveryClientConfiguration,\
+  org.egolessness.cloud.loadbalancer.DestinoLoadBalancerAutoConfiguration,\
+  org.egolessness.cloud.discovery.UtilIPv6AutoConfiguration

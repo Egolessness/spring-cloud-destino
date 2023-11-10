@@ -1,0 +1,174 @@
+{
+  "groups": [
+    {
+      "name": "spring.cloud.destino.discovery",
+      "type": "org.egolessness.cloud.properties.DestinoDiscoveryProperties",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.cloud.destino.discovery.address",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": "${spring.cloud.destino.address}",
+      "description": "destino server address list.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.address-provider",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.address-provider}",
+      "description": "destino server address provider url.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.namespace",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.namespace}",
+      "description": "destino namespace.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.group",
+      "type": "java.lang.String",
+      "defaultValue": "default",
+      "description": "destino group.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.cluster-name",
+      "type": "java.lang.String",
+      "defaultValue": "default",
+      "description": "destino service cluster name.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.username",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.username}",
+      "description": "destino authenticate username.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.password",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.password}",
+      "description": "destino authenticate password.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.encrypted-password",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.encrypted-password}",
+      "description": "destino authenticate encrypted password.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.access-token",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.access-token}",
+      "description": "destino authenticate token.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.service",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.application.name}",
+      "description": "the service name to register, default value is ${spring.application.name}.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.ip",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.client.ip-address:}",
+      "description": "the service ip to register, default value is ${spring.cloud.client.ip-address:}.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.port",
+      "type": "java.lang.Integer",
+      "description": "the service port to register.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "enable destino discovery or not.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.register-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "enable destino discovery auto register.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.instance-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "If instance is enabled to accept request. The default value is true.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.register-mode",
+      "type": "org.egolessness.destino.common.model.message.RegisterMode",
+      "description": "If instance is ephemeral.The default value is true.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.safety",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "safety register instance.The default value is false.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.heartbeat.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "enable destino discovery heart beat or not ."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.backup.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "enable destino registration backup to local file."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.backup.load-on-start",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "load registration info from local file at application start."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.backup.cache-path",
+      "type": "java.lang.String",
+      "description": "local file path with destino registration backup."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.failover.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "enabled destino discovery instances failover."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.failover.mode",
+      "type": "org.egolessness.destino.client.registration.failover.FailoverMode",
+      "defaultValue": "FIRST",
+      "description": "destino discovery instances failover mode."
+    },
+    {
+      "name": "spring.cloud.destino.discovery.heartbeat.refresh-interval",
+      "type": "java.lang.Integer",
+      "defaultValue": 30000,
+      "description": "destino discovery heartbeat refresh interval."
+    },
+    {
+      "name": "spring.cloud.loadbalancer.destino.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "Integrate LoadBalancer or not."
+    }
+]}

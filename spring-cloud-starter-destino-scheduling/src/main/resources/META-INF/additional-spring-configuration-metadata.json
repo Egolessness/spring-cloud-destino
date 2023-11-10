@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "name": "spring.cloud.destino.scheduling",
+      "type": "org.egolessness.cloud.properties.DestinoSchedulingProperties",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.cloud.destino.scheduling.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "enable destino scheduling."
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.execute-thread-count",
+      "type": "java.lang.Integer",
+      "defaultValue": 0,
+      "description": "thread count for destino scheduling executor.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.feedback-batch-size",
+      "type": "java.lang.Integer",
+      "defaultValue": 0,
+      "description": "batch size for destino scheduling feedback.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.feedback-thread-count",
+      "type": "java.lang.Integer",
+      "defaultValue": 0,
+      "description": "thread count for destino scheduling feedback.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+    }
+  ]
+}

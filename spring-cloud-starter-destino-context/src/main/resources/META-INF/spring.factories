@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.egolessness.cloud.context.DestinoAutoConfiguration

@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.egolessness.cloud.DestinoSchedulingAutoConfiguration,\
+  org.egolessness.cloud.scheduling.DestinoRegistrationSchedulingAutoConfiguration,\
+  org.egolessness.cloud.registry.DestinoSchedulingRegistryAutoConfiguration,\
+  org.egolessness.cloud.scheduling.UtilIPv6AutoConfiguration

@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "name": "spring.cloud.destino",
+      "type": "org.egolessness.cloud.context.properties.DestinoContextProperties",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.cloud.destino.address",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": "127.0.0.1:8200",
+      "description": "destino server address list.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.address-provider",
+      "type": "java.lang.String",
+      "description": "destino server address provider url.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.namespace",
+      "type": "java.lang.String",
+      "defaultValue": "public",
+      "description": "destino namespace.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.username",
+      "type": "java.lang.String",
+      "description": "destino authenticate username.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.password",
+      "type": "java.lang.String",
+      "description": "destino authenticate password.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.encrypted-password",
+      "type": "java.lang.String",
+      "description": "destino authenticate encrypted password.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.snapshot-dir",
+      "type": "java.lang.String",
+      "description": "destino snapshot directory.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.access-token",
+      "type": "java.lang.String",
+      "description": "destino authenticate token.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.logging.default-config-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "destino enable default logging config."
+    },
+    {
+      "name": "spring.cloud.destino.logging.config-path",
+      "type": "java.lang.String",
+      "description": "destino logging path."
+    },
+    {
+      "name": "spring.cloud.destino.request.channel",
+      "type": "java.lang.String",
+      "description": "destino request channel."
+    },
+    {
+      "name": "spring.cloud.destino.receiver.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "destino enabled of receiver."
+    },
+    {
+      "name": "spring.cloud.destino.receiver.udpPort",
+      "type": "java.lang.Integer",
+      "defaultValue": 0,
+      "description": "destino udp port of receiver."
+    }
+]}

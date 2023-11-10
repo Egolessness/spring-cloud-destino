@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    maven{url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        maven{url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+        mavenCentral()
+    }
+}
+
+jar {
+    enabled false
+}
+
+test {
+    useJUnitPlatform()
+}
