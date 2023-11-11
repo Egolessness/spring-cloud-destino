@@ -39,25 +39,22 @@ public class DestinoServiceRegistryAutoConfiguration {
 	@Bean
 	@ConditionalOnBean(AutoServiceRegistrationProperties.class)
 	public DestinoRegistration destinoRegistration(
-			ObjectProvider<List<DestinoRegistrationCustomizer>> registrationCustomizersProvider,
+			List<DestinoRegistrationCustomizer> registrationCustomizers,
 			ObjectProvider<ServletWebServerApplicationContext> servletWebServerApplicationContextProvider,
 			ObjectProvider<ReactiveWebServerApplicationContext> reactiveWebServerApplicationContextProvider,
 			DestinoDiscoveryContext discoveryContext
 	) {
-		List<DestinoRegistrationCustomizer> customizers = registrationCustomizersProvider.getIfAvailable();
 		ServletWebServerApplicationContext servletApplicationContext = servletWebServerApplicationContextProvider.getIfAvailable();
 		ReactiveWebServerApplicationContext reactiveApplicationContext = reactiveWebServerApplicationContextProvider.getIfAvailable();
-		return new DestinoRegistration(discoveryContext, customizers, servletApplicationContext, reactiveApplicationContext);
+		return new DestinoRegistration(discoveryContext, registrationCustomizers, servletApplicationContext, reactiveApplicationContext);
 	}
 
 	@Bean
 	@ConditionalOnBean(AutoServiceRegistrationProperties.class)
-	public DestinoAutoServiceRegistration destinoAutoServiceRegistration(
-			DestinoServiceRegistry registry,
-			AutoServiceRegistrationProperties autoServiceRegistrationProperties,
-			DestinoRegistration registration) {
-		return new DestinoAutoServiceRegistration(registry,
-				autoServiceRegistrationProperties, registration);
+	public DestinoAutoServiceRegistration destinoAutoServiceRegistration(DestinoServiceRegistry registry,
+																		 AutoServiceRegistrationProperties autoServiceRegistrationProperties,
+																		 DestinoRegistration registration) {
+		return new DestinoAutoServiceRegistration(registry, autoServiceRegistrationProperties, registration);
 	}
 
 }

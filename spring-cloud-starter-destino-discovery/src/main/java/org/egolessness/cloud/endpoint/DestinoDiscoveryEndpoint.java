@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author zsmjwk@outlook.com (wangkang)
  */
-@Endpoint(id = "destino-discovery")
+@Endpoint(id = "destinodiscovery")
 public class DestinoDiscoveryEndpoint {
 
 	private final DestinoConfiguration destinoConfiguration;

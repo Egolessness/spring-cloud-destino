@@ -15,7 +15,6 @@ import org.springframework.lang.Nullable;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +40,9 @@ public class DestinoSchedulingJobScanner {
     @PostConstruct
     public void init() {
         String[] beanNames = applicationContext.getBeanNamesForType(Object.class, false, true);
-        Arrays.stream(beanNames).parallel().forEach(this::addJobWithBeanName);
+        for (String beanName : beanNames) {
+            addJobWithBeanName(beanName);
+        }
     }
 
     private void addJobWithBeanName(String beanName) {
