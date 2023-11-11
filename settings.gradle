@@ -1,3 +1,9 @@
+pluginManagement {
+    plugins {
+        id 'com.vanniktech.maven.publish' version '0.18.0'
+    }
+}
+
 rootProject.name = 'spring-cloud-destino'
 include 'spring-cloud-starter-destino-discovery'
 include 'spring-cloud-starter-destino-context'

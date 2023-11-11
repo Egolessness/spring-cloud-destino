@@ -18,6 +18,8 @@ public class DestinoSchedulingProperties {
 
     private int feedbackThreadCount;
 
+    private String logLevel;
+
     public DestinoSchedulingProperties() {
     }
 
@@ -51,6 +53,14 @@ public class DestinoSchedulingProperties {
 
     public void setFeedbackThreadCount(int feedbackThreadCount) {
         this.feedbackThreadCount = feedbackThreadCount;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
     }
 
 }

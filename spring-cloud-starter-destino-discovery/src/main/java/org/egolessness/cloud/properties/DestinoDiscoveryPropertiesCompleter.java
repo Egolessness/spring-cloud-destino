@@ -2,6 +2,7 @@ package org.egolessness.cloud.properties;
 
 import org.egolessness.destino.client.properties.DestinoProperties;
 import org.egolessness.cloud.context.properties.DestinoPropertiesCompleter;
+import org.egolessness.destino.client.properties.LoggingProperties;
 import org.egolessness.destino.common.utils.PredicateUtils;
 
 /**
@@ -38,6 +39,14 @@ public class DestinoDiscoveryPropertiesCompleter implements DestinoPropertiesCom
         }
         if (PredicateUtils.isEmpty(properties.getAccessToken())) {
             properties.setAccessToken(discoveryProperties.getAccessToken());
+        }
+        if (PredicateUtils.isNotBlank(discoveryProperties.getLogLevel())) {
+            LoggingProperties loggingProperties = properties.getLoggingProperties();
+            if (null == loggingProperties) {
+                loggingProperties = new LoggingProperties();
+                properties.setLoggingProperties(loggingProperties);
+            }
+            loggingProperties.setRegistrationLogLevel(discoveryProperties.getLogLevel());
         }
     }
 

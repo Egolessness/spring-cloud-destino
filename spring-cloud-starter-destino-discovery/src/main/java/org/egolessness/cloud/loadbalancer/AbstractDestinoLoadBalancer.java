@@ -2,7 +2,7 @@ package org.egolessness.cloud.loadbalancer;
 
 import org.egolessness.cloud.DestinoDiscoveryContext;
 import org.egolessness.cloud.instance.DestinoInstanceMetaKey;
-import org.egolessness.cloud.context.validator.InetAddressValidator;
+import org.egolessness.cloud.context.util.InetAddressValidator;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

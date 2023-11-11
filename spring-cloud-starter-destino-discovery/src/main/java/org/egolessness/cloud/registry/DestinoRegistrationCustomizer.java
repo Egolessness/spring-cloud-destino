@@ -1,10 +1,10 @@
 package org.egolessness.cloud.registry;
 
-import javax.annotation.Nonnull;
+import org.springframework.lang.NonNull;
 
 @FunctionalInterface
 public interface DestinoRegistrationCustomizer {
 
-	void accept(@Nonnull DestinoRegistration registration);
+	void accept(@NonNull DestinoRegistration registration);
 
 }

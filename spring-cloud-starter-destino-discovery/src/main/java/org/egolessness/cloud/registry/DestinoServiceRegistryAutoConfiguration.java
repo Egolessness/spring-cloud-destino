@@ -31,7 +31,7 @@ import java.util.List;
 public class DestinoServiceRegistryAutoConfiguration {
 
 	@Bean
-	public ServiceRegistry<DestinoRegistration> serviceRegistry(DestinoConfiguration destinoConfiguration,
+	public DestinoServiceRegistry serviceRegistry(DestinoConfiguration destinoConfiguration,
 														 DestinoDiscoveryProperties discoveryProperties) {
 		return new DestinoServiceRegistry(destinoConfiguration, discoveryProperties);
 	}

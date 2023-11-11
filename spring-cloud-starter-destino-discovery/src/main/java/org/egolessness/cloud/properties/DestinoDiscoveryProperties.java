@@ -2,7 +2,8 @@ package org.egolessness.cloud.properties;
 
 import org.egolessness.destino.client.properties.BackupProperties;
 import org.egolessness.destino.client.properties.FailoverProperties;
-import org.egolessness.destino.common.model.message.RegisterMode;
+import org.egolessness.destino.common.enumeration.RegisterMode;
+import org.egolessness.destino.common.utils.PredicateUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.*;
@@ -55,7 +56,7 @@ public class DestinoDiscoveryProperties {
 	/**
 	 * namespace.
 	 */
-	@Value("${spring.cloud.destino.discovery.namespace:${spring.cloud.destino.namespace:}}")
+	@Value("${spring.cloud.destino.discovery.namespace:${spring.cloud.destino.namespace:public}}")
 	private String namespace = REGISTRATION_NAMESPACE;
 
 	/**
@@ -164,6 +165,11 @@ public class DestinoDiscoveryProperties {
 	 * throw exceptions during service registration if false, otherwise, log error
 	 */
 	private boolean failFast = true;
+
+	/**
+	 * log level.
+	 */
+	private String logLevel;
 
 	public List<String> getAddress() {
 		return address;
@@ -397,6 +403,14 @@ public class DestinoDiscoveryProperties {
 		this.failFast = failFast;
 	}
 
+	public String getLogLevel() {
+		return logLevel;
+	}
+
+	public void setLogLevel(String logLevel) {
+		this.logLevel = logLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "DestinoDiscoveryProperties{" +
@@ -421,6 +435,7 @@ public class DestinoDiscoveryProperties {
 				", deathTimeout=" + deathTimeout +
 				", healthCheckUrl='" + healthCheckUrl + '\'' +
 				", metadata=" + metadata +
+				", logLevel='" + logLevel + '\'' +
 				'}';
 	}
 }

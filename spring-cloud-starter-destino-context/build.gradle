@@ -10,8 +10,9 @@ dependencies {
     implementation "org.springframework.cloud:spring-cloud-commons"
     implementation "org.springframework.cloud:spring-cloud-context"
 
-    implementation ("org.egolessness.destino:destino-client:${destino_version}")
-    implementation ("org.egolessness.destino:destino-grpc:${destino_version}")
+    implementation "org.egolessness.destino:destino-client:${destino_version}"
+    implementation "org.egolessness.destino:destino-common:${destino_version}"
+    implementation "org.egolessness.destino:destino-grpc:${destino_version}"
 
     compileOnly "org.springframework.boot:spring-boot-actuator-autoconfigure"
 

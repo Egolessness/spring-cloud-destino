@@ -1,7 +1,7 @@
 package org.egolessness.cloud.context.properties;
 
 import org.egolessness.destino.client.properties.RepeaterProperties;
-import org.egolessness.destino.common.model.message.RequestChannel;
+import org.egolessness.destino.common.enumeration.RequestChannel;
 import org.egolessness.destino.common.properties.HttpProperties;
 import org.egolessness.destino.common.properties.RequestProperties;
 import org.egolessness.destino.common.properties.TlsProperties;

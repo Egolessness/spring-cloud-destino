@@ -20,6 +20,12 @@ subprojects {
     }
 
     repositories {
+        maven {
+            url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
         maven{url 'https://maven.aliyun.com/nexus/content/groups/public/'}
         mavenCentral()
     }

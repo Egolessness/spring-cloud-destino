@@ -8,7 +8,8 @@ dependencies {
     annotationProcessor platform("org.springframework.cloud:spring-cloud-build:${springcloud_build_version}")
 
     implementation "org.springframework.cloud:spring-cloud-commons"
-    implementation ("org.egolessness.destino:destino-client:${destino_version}")
+    implementation "org.egolessness.destino:destino-client:${destino_version}"
+    implementation "org.egolessness.destino:destino-common:${destino_version}"
     implementation project(":spring-cloud-starter-destino-context")
 
     compileOnly project(":spring-cloud-starter-destino-discovery")

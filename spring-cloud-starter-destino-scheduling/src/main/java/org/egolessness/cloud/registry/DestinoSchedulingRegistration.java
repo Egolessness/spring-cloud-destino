@@ -5,7 +5,7 @@ import org.egolessness.cloud.context.util.InetIPv6Utils;
 import org.egolessness.cloud.instance.DestinoInstanceMetaKey;
 import org.egolessness.cloud.properties.DestinoSchedulingExtProperties;
 import org.egolessness.cloud.scheduling.DestinoSchedulingJobScanner;
-import org.egolessness.destino.common.model.message.RegisterMode;
+import org.egolessness.destino.common.enumeration.RegisterMode;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext;

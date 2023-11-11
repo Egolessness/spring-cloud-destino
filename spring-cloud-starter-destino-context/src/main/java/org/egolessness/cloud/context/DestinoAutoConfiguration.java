@@ -27,8 +27,8 @@ public class DestinoAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public DestinoConfiguration destinoConfiguration(DestinoContextProperties contextProperties,
-														 ApplicationContext context,
-														 List<DestinoPropertiesCompleter> completerList) throws DestinoException {
+													 ApplicationContext context,
+													 List<DestinoPropertiesCompleter> completerList) throws DestinoException {
 		DestinoProperties destinoProperties = contextProperties.toDestinoProperties(completerList);
 		ScriptFactory scriptFactory = new ScriptFactory();
 		scriptFactory.setInstanceFactory(new SpringScriptInstanceFactory(context));

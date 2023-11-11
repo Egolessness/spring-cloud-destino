@@ -162,8 +162,7 @@ public class DestinoContextProperties {
             properties.setRepeaterProperties(request.toRepeaterProperties());
         }
         if (null != logging) {
-            properties.setLoggingDefaultConfigEnabled(logging.getDefaultConfigEnabled());
-            properties.setLoggingConfigPath(logging.getConfigPath());
+            properties.setLoggingProperties(logging.toLoggingProperties());
         }
         if (PredicateUtils.isNotEmpty(completerList)) {
             completerList.sort(Comparator.comparingInt(Ordered::getOrder));

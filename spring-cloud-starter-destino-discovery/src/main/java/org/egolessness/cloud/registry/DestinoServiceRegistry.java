@@ -8,7 +8,7 @@ import org.egolessness.destino.client.registration.selector.InstanceSelector;
 import org.egolessness.cloud.properties.DestinoDiscoveryProperties;
 import org.egolessness.destino.common.exception.DestinoException;
 import org.egolessness.destino.common.model.ServiceInstance;
-import org.egolessness.destino.common.model.message.RegisterMode;
+import org.egolessness.destino.common.enumeration.RegisterMode;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -161,6 +161,8 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 			registerInfo.setMode(discoveryProperties.getRegisterMode());
 		} else if (discoveryProperties.isSafety()) {
 			registerInfo.setMode(RegisterMode.SAFETY);
+		} else {
+			registerInfo.setMode(RegisterMode.QUICKLY);
 		}
 		return registerInfo;
 	}

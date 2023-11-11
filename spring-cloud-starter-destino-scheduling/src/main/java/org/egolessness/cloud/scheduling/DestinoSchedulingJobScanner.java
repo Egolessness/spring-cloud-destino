@@ -11,8 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.MethodIntrospector;
 import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.lang.Nullable;
 
-import javax.annotation.Nullable;
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
 import java.util.Arrays;

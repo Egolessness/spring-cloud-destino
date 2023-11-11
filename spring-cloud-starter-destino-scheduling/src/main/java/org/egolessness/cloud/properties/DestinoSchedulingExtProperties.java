@@ -1,6 +1,6 @@
 package org.egolessness.cloud.properties;
 
-import org.egolessness.destino.common.model.message.RegisterMode;
+import org.egolessness.destino.common.enumeration.RegisterMode;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class DestinoSchedulingExtProperties extends DestinoSchedulingProperties 
 	/**
 	 * namespace.
 	 */
-	@Value("${spring.cloud.destino.scheduling.namespace:${spring.cloud.destino.namespace:}}")
+	@Value("${spring.cloud.destino.scheduling.namespace:${spring.cloud.destino.namespace:public}}")
 	private String namespace = REGISTRATION_NAMESPACE;
 
 	/**
