@@ -31,14 +31,14 @@ import java.util.List;
 public class DestinoServiceRegistryAutoConfiguration {
 
 	@Bean
-	public DestinoServiceRegistry serviceRegistry(DestinoConfiguration destinoConfiguration,
+	public DestinoServiceRegistry destinoServiceRegistry(DestinoConfiguration destinoConfiguration,
 														 DestinoDiscoveryProperties discoveryProperties) {
 		return new DestinoServiceRegistry(destinoConfiguration, discoveryProperties);
 	}
 
 	@Bean
 	@ConditionalOnBean(AutoServiceRegistrationProperties.class)
-	public DestinoRegistration registration(
+	public DestinoRegistration destinoRegistration(
 			ObjectProvider<List<DestinoRegistrationCustomizer>> registrationCustomizersProvider,
 			ObjectProvider<ServletWebServerApplicationContext> servletWebServerApplicationContextProvider,
 			ObjectProvider<ReactiveWebServerApplicationContext> reactiveWebServerApplicationContextProvider,
@@ -52,7 +52,7 @@ public class DestinoServiceRegistryAutoConfiguration {
 
 	@Bean
 	@ConditionalOnBean(AutoServiceRegistrationProperties.class)
-	public DestinoAutoServiceRegistration autoServiceRegistration(
+	public DestinoAutoServiceRegistration destinoAutoServiceRegistration(
 			DestinoServiceRegistry registry,
 			AutoServiceRegistrationProperties autoServiceRegistrationProperties,
 			DestinoRegistration registration) {

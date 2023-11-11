@@ -24,7 +24,7 @@ public class DestinoDiscoveryEndpointAutoConfiguration {
 
 	@Bean
 	@ConditionalOnEnabledHealthIndicator("destino-discovery")
-	public HealthIndicator healthIndicator(DestinoConfiguration destinoConfiguration) {
+	public DestinoHealthIndicator destinoHealthIndicator(DestinoConfiguration destinoConfiguration) {
 		return new DestinoHealthIndicator(destinoConfiguration);
 	}
 

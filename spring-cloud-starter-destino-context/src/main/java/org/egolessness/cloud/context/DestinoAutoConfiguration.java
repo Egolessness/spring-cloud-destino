@@ -36,7 +36,7 @@ public class DestinoAutoConfiguration {
 	}
 
 	@Bean
-	public DestinoShutdownApplicationListener shutdownApplicationListener(DestinoConfiguration destinoConfiguration) {
+	public DestinoShutdownApplicationListener destinoShutdownApplicationListener(DestinoConfiguration destinoConfiguration) {
 		return new DestinoShutdownApplicationListener(destinoConfiguration);
 	}
 

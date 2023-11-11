@@ -35,12 +35,12 @@ public class DestinoSchedulingRegistryAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public DestinoSchedulingRegistration schedulingRegistration(DestinoSchedulingExtProperties extProperties,
-																ApplicationContext context, InetUtils inetUtils,
-															  	InetIPv6Utils inetIPv6Utils,
-																DestinoSchedulingJobScanner jobScanner,
-															  	ObjectProvider<ServletWebServerApplicationContext> servletContextProvider,
-															  	ObjectProvider<ReactiveWebServerApplicationContext> reactiveContextProvider) {
+	public DestinoSchedulingRegistration destinoSchedulingRegistration(DestinoSchedulingExtProperties extProperties,
+																	   ApplicationContext context, InetUtils inetUtils,
+																	   InetIPv6Utils inetIPv6Utils,
+																	   DestinoSchedulingJobScanner jobScanner,
+																	   ObjectProvider<ServletWebServerApplicationContext> servletContextProvider,
+																	   ObjectProvider<ReactiveWebServerApplicationContext> reactiveContextProvider) {
 		return new DestinoSchedulingRegistration(extProperties, context, inetUtils, inetIPv6Utils, jobScanner,
 				servletContextProvider, reactiveContextProvider);
 	}

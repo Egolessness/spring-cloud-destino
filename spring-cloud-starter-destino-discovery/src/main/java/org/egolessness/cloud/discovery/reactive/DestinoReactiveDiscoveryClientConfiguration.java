@@ -29,7 +29,7 @@ public class DestinoReactiveDiscoveryClientConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public DestinoReactiveDiscoveryClient reactiveDiscoveryClient(DestinoServiceDiscovery destinoServiceDiscovery) {
+	public DestinoReactiveDiscoveryClient destinoReactiveDiscoveryClient(DestinoServiceDiscovery destinoServiceDiscovery) {
 		return new DestinoReactiveDiscoveryClient(destinoServiceDiscovery);
 	}
 

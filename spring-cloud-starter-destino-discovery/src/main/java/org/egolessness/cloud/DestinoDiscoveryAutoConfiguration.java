@@ -32,22 +32,22 @@ public class DestinoDiscoveryAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public DestinoServiceDiscovery destinoDiscovery(DestinoDiscoveryProperties discoveryProperties,
-                                                    DestinoConfiguration destinoConfiguration) {
+    public DestinoServiceDiscovery destinoServiceDiscovery(DestinoDiscoveryProperties discoveryProperties,
+                                                           DestinoConfiguration destinoConfiguration) {
         return new DestinoServiceDiscovery(discoveryProperties, destinoConfiguration);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public DestinoDiscoveryContext discoveryContext(DestinoDiscoveryProperties discoveryProperties,
-                                                    ApplicationContext context, InetUtils inetUtils,
-                                                    InetIPv6Utils inetIPv6Utils) {
+    public DestinoDiscoveryContext destinoDiscoveryContext(DestinoDiscoveryProperties discoveryProperties,
+                                                           ApplicationContext context, InetUtils inetUtils,
+                                                           InetIPv6Utils inetIPv6Utils) {
         return new DestinoDiscoveryContext(discoveryProperties, context, inetUtils, inetIPv6Utils);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public DestinoDiscoveryPropertiesCompleter discoveryPropertiesCompleter(DestinoDiscoveryProperties discoveryProperties) {
+    public DestinoDiscoveryPropertiesCompleter destinoDiscoveryPropertiesCompleter(DestinoDiscoveryProperties discoveryProperties) {
         return new DestinoDiscoveryPropertiesCompleter(discoveryProperties);
     }
 

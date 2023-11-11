@@ -24,7 +24,7 @@ public class DestinoSchedulingAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public DestinoSchedulingPropertiesCompleter discoveryPropertiesCompleter(DestinoSchedulingProperties properties) {
+    public DestinoSchedulingPropertiesCompleter destinoSchedulingPropertiesCompleter(DestinoSchedulingProperties properties) {
         return new DestinoSchedulingPropertiesCompleter(properties);
     }
 

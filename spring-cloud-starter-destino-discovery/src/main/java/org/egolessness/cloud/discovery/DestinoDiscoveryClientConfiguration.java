@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
 public class DestinoDiscoveryClientConfiguration {
 
 	@Bean
-	public DiscoveryClient discoveryClient(DestinoServiceDiscovery destinoServiceDiscovery) {
+	public DestinoDiscoveryClient destinoDiscoveryClient(DestinoServiceDiscovery destinoServiceDiscovery) {
 		return new DestinoDiscoveryClient(destinoServiceDiscovery);
 	}
 
