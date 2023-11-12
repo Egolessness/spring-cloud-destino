@@ -107,8 +107,7 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 		try {
 			RegistrationService registrationService = destinoConfiguration.getRegistrationService();
 			registrationService.update(namespace, group, serviceId, registerInfo);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException("Failed to update destino instance status.", e);
 		}
 
@@ -131,8 +130,7 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 					return instance.isEnabled() ? Status.UP.getCode() : Status.DOWN.getCode();
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Failed to read instances of {}.", serviceId, e);
 		}
 		return null;

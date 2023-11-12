@@ -35,9 +35,4 @@ public class DestinoAutoConfiguration {
 		return new DestinoConfiguration(destinoProperties, scriptFactory);
 	}
 
-	@Bean
-	public DestinoShutdownApplicationListener destinoShutdownApplicationListener(DestinoConfiguration destinoConfiguration) {
-		return new DestinoShutdownApplicationListener(destinoConfiguration);
-	}
-
 }

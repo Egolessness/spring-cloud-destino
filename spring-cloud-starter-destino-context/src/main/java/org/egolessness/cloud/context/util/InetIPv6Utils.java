@@ -32,30 +32,19 @@ public class InetIPv6Utils {
 		InetAddress address = null;
 
 		try {
-			for (Enumeration<NetworkInterface> nics = NetworkInterface
-					.getNetworkInterfaces(); nics.hasMoreElements(); ) {
-				NetworkInterface ifc = nics.nextElement();
+			for (Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces(); interfaces.hasMoreElements();) {
+				NetworkInterface ifc = interfaces.nextElement();
 				if (ifc.isUp() || !ifc.isVirtual() || !ifc.isLoopback()) {
 					if (address != null) {
 						break;
 					}
 
 					if (!ignoreInterface(ifc.getDisplayName())) {
-						for (Enumeration<InetAddress> addrs = ifc
-								.getInetAddresses(); addrs.hasMoreElements(); ) {
-							InetAddress inetAddress = addrs.nextElement();
-							if (inetAddress instanceof Inet6Address
-									// filter ::1
-									&& !inetAddress.isLoopbackAddress()
-									// filter fe80::/10
-									&& !inetAddress.isLinkLocalAddress()
-									// filter ::/128
-									&& !inetAddress.isAnyLocalAddress()
-									// filter fec0::/10,which was discarded, but some
-									// address may be deployed.
-									&& !inetAddress.isSiteLocalAddress()
-									// filter fd00::/8
-									&& !isUniqueLocalAddress(inetAddress)
+						for (Enumeration<InetAddress> inetAddresses = ifc.getInetAddresses(); inetAddresses.hasMoreElements(); ) {
+							InetAddress inetAddress = inetAddresses.nextElement();
+							if (inetAddress instanceof Inet6Address && !inetAddress.isLoopbackAddress()
+									&& !inetAddress.isLinkLocalAddress() && !inetAddress.isAnyLocalAddress()
+									&& !inetAddress.isSiteLocalAddress() && !isUniqueLocalAddress(inetAddress)
 									&& isPreferredAddress(inetAddress)) {
 								log.trace("Found non-loopback interface: "
 										+ ifc.getDisplayName());
@@ -66,8 +55,7 @@ public class InetIPv6Utils {
 					}
 				}
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.error("Cannot get first non-loopback address", e);
 		}
 		return address;
@@ -79,8 +67,6 @@ public class InetIPv6Utils {
 	}
 
 	private String normalizeIPv6(String ip) {
-		// Remove the suffix of network card in IPv6 address, such as
-		// 2408:400a:8c:5400:6578:5c42:77b1:bc5d%eth0
 		int idx = ip.indexOf("%");
 		return idx != -1 ? "[" + ip.substring(0, idx) + "]" : "[" + ip + "]";
 	}
@@ -131,12 +117,6 @@ public class InetIPv6Utils {
 		return hostInfo;
 	}
 
-	/**
-	 * If the address is Unique Local Address.
-	 *
-	 * @param inetAddress {@link InetAddress}
-	 * @return {@code true} if the address is Unique Local Address, otherwise {@code false}
-	 */
 	private boolean isUniqueLocalAddress(InetAddress inetAddress) {
 		byte[] ip = inetAddress.getAddress();
 		return (ip[0] & 0xff) == 0xfd;
