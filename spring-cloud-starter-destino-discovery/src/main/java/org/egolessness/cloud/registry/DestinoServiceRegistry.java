@@ -3,7 +3,7 @@ package org.egolessness.cloud.registry;
 import org.egolessness.destino.client.DestinoConfiguration;
 import org.egolessness.destino.client.registration.ConsultationService;
 import org.egolessness.destino.client.registration.RegistrationService;
-import org.egolessness.destino.client.registration.message.RegisterInfo;
+import org.egolessness.destino.client.registration.message.RegistrationInfo;
 import org.egolessness.destino.client.registration.selector.InstanceSelector;
 import org.egolessness.cloud.properties.DestinoDiscoveryProperties;
 import org.egolessness.destino.common.exception.DestinoException;
@@ -51,12 +51,12 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 		String namespace = discoveryProperties.getNamespace();
 		String group = discoveryProperties.getGroup();
 		String serviceId = registration.getServiceId();
-		RegisterInfo registerInfo = buildRegisterInfo(registration);
+		RegistrationInfo registrationInfo = buildRegistrationInfo(registration);
 
 		try {
-			registrationService.register(namespace, group, serviceId, registerInfo);
+			registrationService.register(namespace, group, serviceId, registrationInfo);
 			log.info("Destino registry, {} {} {} {}:{} register finished.", namespace, group, serviceId,
-					registerInfo.getIp(), registerInfo.getPort());
+					registrationInfo.getIp(), registrationInfo.getPort());
 		} catch (Exception e) {
 			if (discoveryProperties.isFailFast()) {
 				log.error("Destino registry, {} register failed...{},", serviceId, registration, e);
@@ -101,12 +101,12 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 		String namespace = discoveryProperties.getNamespace();
 		String serviceId = registration.getServiceId();
 		String group = discoveryProperties.getGroup();
-		RegisterInfo registerInfo = buildRegisterInfo(registration);
-		registerInfo.setEnabled(!Status.DOWN.getCode().equalsIgnoreCase(status));
+		RegistrationInfo registrationInfo = buildRegistrationInfo(registration);
+		registrationInfo.setEnabled(!Status.DOWN.getCode().equalsIgnoreCase(status));
 
 		try {
 			RegistrationService registrationService = destinoConfiguration.getRegistrationService();
-			registrationService.update(namespace, group, serviceId, registerInfo);
+			registrationService.update(namespace, group, serviceId, registrationInfo);
 		} catch (Exception e) {
 			throw new RuntimeException("Failed to update destino instance status.", e);
 		}
@@ -145,24 +145,25 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 		}
 	}
 
-	private RegisterInfo buildRegisterInfo(DestinoRegistration registration) {
-		RegisterInfo registerInfo = new RegisterInfo();
-		registerInfo.setIp(registration.getHost());
-		registerInfo.setPort(registration.getPort());
-		registerInfo.setWeight(discoveryProperties.getWeight());
-		registerInfo.setEnabled(discoveryProperties.isInstanceEnabled());
-		registerInfo.setCluster(discoveryProperties.getClusterName());
-		registerInfo.setJobs(registration.getJobs());
-		registerInfo.setMetadata(registration.getMetadata());
+	private RegistrationInfo buildRegistrationInfo(DestinoRegistration registration) {
+		RegistrationInfo registrationInfo = new RegistrationInfo();
+		registrationInfo.setIp(registration.getHost());
+		registrationInfo.setPort(registration.getPort());
+		registrationInfo.setWeight(discoveryProperties.getWeight());
+		registrationInfo.setEnabled(discoveryProperties.isInstanceEnabled());
+		registrationInfo.setCluster(discoveryProperties.getClusterName());
+		registrationInfo.setMetadata(registration.getMetadata());
 
 		if (null != discoveryProperties.getRegisterMode()) {
-			registerInfo.setMode(discoveryProperties.getRegisterMode());
+			registrationInfo.setMode(discoveryProperties.getRegisterMode());
 		} else if (discoveryProperties.isSafety()) {
-			registerInfo.setMode(RegisterMode.SAFETY);
+			registrationInfo.setMode(RegisterMode.SAFETY);
 		} else {
-			registerInfo.setMode(RegisterMode.QUICKLY);
+			registrationInfo.setMode(RegisterMode.QUICKLY);
 		}
-		return registerInfo;
+
+		registration.customize(registrationInfo);
+		return registrationInfo;
 	}
 
 }

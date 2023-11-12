@@ -1,14 +1,14 @@
 package org.egolessness.cloud.registry;
 
 import org.egolessness.cloud.DestinoDiscoveryContext;
-import org.egolessness.destino.client.scheduling.functional.Scheduled;
+import org.egolessness.cloud.context.DestinoRegistrationCustomizer;
+import org.egolessness.destino.client.registration.message.RegistrationInfo;
 import org.egolessness.cloud.properties.DestinoDiscoveryProperties;
 import org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.cloud.client.DefaultServiceInstance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 
-import javax.annotation.PostConstruct;
 import java.net.*;
 import java.util.*;
 
@@ -27,8 +27,6 @@ public class DestinoRegistration implements Registration {
 
 	private final ReactiveWebServerApplicationContext reactiveWebServerApplicationContext;
 
-	private Set<Scheduled<String, String>> jobs;
-
 	public DestinoRegistration(DestinoDiscoveryContext discoveryContext,
 							   List<DestinoRegistrationCustomizer> destinoRegistrationCustomizers,
 							   ServletWebServerApplicationContext servletWebServerApplicationContext,
@@ -37,19 +35,6 @@ public class DestinoRegistration implements Registration {
 		this.discoveryContext = discoveryContext;
 		this.servletWebServerApplicationContext = servletWebServerApplicationContext;
 		this.reactiveWebServerApplicationContext = reactiveWebServerApplicationContext;
-	}
-
-	@PostConstruct
-	public void init() {
-		customize(registrationCustomizers);
-	}
-
-	private void customize(List<DestinoRegistrationCustomizer> registrationCustomizers) {
-		if (registrationCustomizers != null) {
-			for (DestinoRegistrationCustomizer customizer : registrationCustomizers) {
-				customizer.accept(this);
-			}
-		}
 	}
 
 	@Override
@@ -107,20 +92,19 @@ public class DestinoRegistration implements Registration {
 		return discoveryContext.getDiscoveryProperties();
 	}
 
-	public Set<Scheduled<String, String>> getJobs() {
-		return jobs;
+	public void customize(RegistrationInfo registrationInfo) {
+		if (registrationCustomizers != null) {
+			for (DestinoRegistrationCustomizer customizer : registrationCustomizers) {
+				customizer.accept(registrationInfo);
+			}
+		}
 	}
-
-	public void setJobs(Set<Scheduled<String, String>> jobs) {
-		this.jobs = jobs;
-	}
-
 
 	@Override
 	public String toString() {
 		return "DestinoRegistration{" +
 				"discoveryProperties=" + discoveryContext.getDiscoveryProperties() +
-				", jobs=" + jobs +
 				'}';
 	}
+
 }

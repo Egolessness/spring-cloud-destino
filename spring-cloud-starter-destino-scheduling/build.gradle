@@ -13,7 +13,6 @@ dependencies {
     api "org.egolessness.destino:destino-common:${destino_version}"
     api "org.egolessness.destino:destino-client:${destino_version}"
 
-    compileOnly project(":spring-cloud-starter-destino-discovery")
     compileOnly "org.springframework.boot:spring-boot-actuator-autoconfigure"
     compileOnly "org.springframework.boot:spring-boot-starter-webflux"
 

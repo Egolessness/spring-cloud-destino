@@ -2,6 +2,7 @@ package org.egolessness.cloud.properties;
 
 import org.egolessness.destino.common.enumeration.RegisterMode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import static org.egolessness.destino.common.constant.DefaultConstants.*;
  *
  * @author zsmjwk@outlook.com (wangkang)
  */
+@ConfigurationProperties("spring.cloud.destino.scheduling")
 public class DestinoSchedulingExtProperties extends DestinoSchedulingProperties {
 
 	/**

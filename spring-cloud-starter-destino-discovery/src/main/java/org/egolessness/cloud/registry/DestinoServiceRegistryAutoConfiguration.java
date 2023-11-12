@@ -3,6 +3,7 @@ package org.egolessness.cloud.registry;
 import org.egolessness.cloud.ConditionalOnDestinoDiscoveryEnabled;
 import org.egolessness.cloud.DestinoDiscoveryAutoConfiguration;
 import org.egolessness.cloud.DestinoDiscoveryContext;
+import org.egolessness.cloud.context.DestinoRegistrationCustomizer;
 import org.egolessness.destino.client.DestinoConfiguration;
 import org.egolessness.cloud.properties.DestinoDiscoveryProperties;
 import org.springframework.beans.factory.ObjectProvider;

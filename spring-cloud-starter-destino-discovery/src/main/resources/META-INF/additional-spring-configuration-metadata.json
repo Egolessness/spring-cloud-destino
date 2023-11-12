@@ -113,7 +113,7 @@
     },
     {
       "name": "spring.cloud.destino.discovery.register-mode",
-      "type": "org.egolessness.destino.common.model.message.RegisterMode",
+      "type": "org.egolessness.destino.common.enumeration.RegisterMode",
       "description": "If instance is ephemeral.The default value is true.",
       "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
     },

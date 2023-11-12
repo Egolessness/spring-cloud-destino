@@ -2,8 +2,8 @@
   "groups": [
     {
       "name": "spring.cloud.destino.scheduling",
-      "type": "org.egolessness.cloud.properties.DestinoSchedulingProperties",
-      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+      "type": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
     }
   ],
   "properties": [
@@ -18,21 +18,136 @@
       "type": "java.lang.Integer",
       "defaultValue": 0,
       "description": "thread count for destino scheduling executor.",
-      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
     },
     {
       "name": "spring.cloud.destino.scheduling.feedback-batch-size",
       "type": "java.lang.Integer",
       "defaultValue": 0,
       "description": "batch size for destino scheduling feedback.",
-      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
     },
     {
       "name": "spring.cloud.destino.scheduling.feedback-thread-count",
       "type": "java.lang.Integer",
       "defaultValue": 0,
       "description": "thread count for destino scheduling feedback.",
-      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingProperties"
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.address",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": "${spring.cloud.destino.address}",
+      "description": "destino server address list.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.address-provider",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.address-provider}",
+      "description": "destino server address provider url.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.namespace",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.namespace}",
+      "description": "destino namespace.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.group",
+      "type": "java.lang.String",
+      "defaultValue": "default",
+      "description": "destino group.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.cluster-name",
+      "type": "java.lang.String",
+      "defaultValue": "default",
+      "description": "destino service cluster name.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.username",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.username}",
+      "description": "destino authenticate username.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.password",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.password}",
+      "description": "destino authenticate password.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.encrypted-password",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.encrypted-password}",
+      "description": "destino authenticate encrypted password.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.access-token",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.destino.access-token}",
+      "description": "destino authenticate token.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.service",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.application.name}",
+      "description": "the service name to register, default value is ${spring.application.name}.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.ip",
+      "type": "java.lang.String",
+      "defaultValue": "${spring.cloud.client.ip-address:}",
+      "description": "the service ip to register, default value is ${spring.cloud.client.ip-address:}.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.port",
+      "type": "java.lang.Integer",
+      "description": "the service port to register.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.instance-enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "If instance is enabled to accept request. The default value is true.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.register-mode",
+      "type": "org.egolessness.destino.common.enumeration.RegisterMode",
+      "description": "If instance is ephemeral.The default value is true.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.safety",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "safety register instance.The default value is false.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoSchedulingExtProperties"
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.heartbeat.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "enable destino instance heart beat or not ."
+    },
+    {
+      "name": "spring.cloud.destino.scheduling.heartbeat.refresh-interval",
+      "type": "java.lang.Integer",
+      "defaultValue": 30000,
+      "description": "destino instance heartbeat refresh interval."
     }
   ]
 }

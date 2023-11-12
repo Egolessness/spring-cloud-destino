@@ -1,13 +1,10 @@
 package org.egolessness.cloud.properties;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 /**
  * Properties for Destino scheduling.
  *
  * @author zsmjwk@outlook.com (wangkang)
  */
-@ConfigurationProperties("spring.cloud.destino.scheduling")
 public class DestinoSchedulingProperties {
 
     private boolean enabled = true;

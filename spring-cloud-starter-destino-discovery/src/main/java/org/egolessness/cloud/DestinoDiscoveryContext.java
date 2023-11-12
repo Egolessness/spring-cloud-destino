@@ -1,6 +1,6 @@
 package org.egolessness.cloud;
 
-import org.egolessness.cloud.instance.DestinoInstanceMetaKey;
+import org.egolessness.cloud.context.DestinoMetadataKey;
 import org.egolessness.cloud.properties.DestinoDiscoveryProperties;
 import org.egolessness.cloud.context.util.InetIPv6Utils;
 import org.egolessness.destino.common.utils.PredicateUtils;
@@ -52,7 +52,7 @@ public class DestinoDiscoveryContext {
 
         metadata.put(REGISTER_ENVIRONMENT, "SPRING_CLOUD");
         if (discoveryProperties.isSecure()) {
-            metadata.put(DestinoInstanceMetaKey.SECURE, "true");
+            metadata.put(DestinoMetadataKey.SECURE, "true");
         }
 
         String ip = discoveryProperties.getIp();
@@ -63,21 +63,21 @@ public class DestinoDiscoveryContext {
 
         Environment env = context.getEnvironment();
 
-        String endpointBasePath = env.getProperty(DestinoInstanceMetaKey.MANAGEMENT_ENDPOINT_BASE_PATH);
+        String endpointBasePath = env.getProperty(DestinoMetadataKey.MANAGEMENT_ENDPOINT_BASE_PATH);
         if (PredicateUtils.isNotEmpty(endpointBasePath)) {
-            metadata.put(DestinoInstanceMetaKey.MANAGEMENT_ENDPOINT_BASE_PATH, endpointBasePath);
+            metadata.put(DestinoMetadataKey.MANAGEMENT_ENDPOINT_BASE_PATH, endpointBasePath);
         }
 
         Integer managementPort = ManagementServerPortUtils.getPort(context);
         if (managementPort != null) {
-            metadata.put(DestinoInstanceMetaKey.MANAGEMENT_PORT, managementPort.toString());
+            metadata.put(DestinoMetadataKey.MANAGEMENT_PORT, managementPort.toString());
             String address = env.getProperty("management.server.address");
             if (PredicateUtils.isNotEmpty(address)) {
-                metadata.put(DestinoInstanceMetaKey.MANAGEMENT_ADDRESS, address);
+                metadata.put(DestinoMetadataKey.MANAGEMENT_ADDRESS, address);
             }
             String contextPath = env.getProperty("management.server.servlet.context-path");
             if (PredicateUtils.isNotEmpty(contextPath)) {
-                metadata.put(DestinoInstanceMetaKey.MANAGEMENT_CONTEXT_PATH, contextPath);
+                metadata.put(DestinoMetadataKey.MANAGEMENT_CONTEXT_PATH, contextPath);
             }
         }
 
@@ -123,12 +123,12 @@ public class DestinoDiscoveryContext {
                 String ipv4Address = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
                 String ipv6Address = inetIPv6Utils.findIPv6Address();
                 if (PredicateUtils.isNotBlank(ipv6Address)) {
-                    discoveryProperties.getMetadata().put(DestinoInstanceMetaKey.IPV6, ipv6Address);
+                    discoveryProperties.getMetadata().put(DestinoMetadataKey.IPV6, ipv6Address);
                 }
                 return ipv4Address;
-            } else if (DestinoInstanceMetaKey.IPV4.equalsIgnoreCase(ipType)) {
+            } else if (DestinoMetadataKey.IPV4.equalsIgnoreCase(ipType)) {
                 return inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
-            } else if (DestinoInstanceMetaKey.IPV6.equalsIgnoreCase(ipType)) {
+            } else if (DestinoMetadataKey.IPV6.equalsIgnoreCase(ipType)) {
                 String ipv6Address = inetIPv6Utils.findIPv6Address();
                 if (PredicateUtils.isBlank(ipv6Address)) {
                     return inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();

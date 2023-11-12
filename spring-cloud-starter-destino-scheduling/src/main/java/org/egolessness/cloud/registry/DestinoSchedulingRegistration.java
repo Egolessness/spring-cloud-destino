@@ -1,10 +1,10 @@
 package org.egolessness.cloud.registry;
 
-import org.egolessness.destino.client.registration.message.RegisterInfo;
+import org.egolessness.cloud.context.DestinoMetadataKey;
+import org.egolessness.cloud.context.DestinoRegistrationCustomizer;
+import org.egolessness.destino.client.registration.message.RegistrationInfo;
 import org.egolessness.cloud.context.util.InetIPv6Utils;
-import org.egolessness.cloud.instance.DestinoInstanceMetaKey;
 import org.egolessness.cloud.properties.DestinoSchedulingExtProperties;
-import org.egolessness.cloud.scheduling.DestinoSchedulingJobScanner;
 import org.egolessness.destino.common.enumeration.RegisterMode;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.springframework.beans.factory.ObjectProvider;
@@ -19,6 +19,7 @@ import javax.annotation.PostConstruct;
 import java.net.*;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.egolessness.destino.common.constant.InstanceMetadataKey.*;
@@ -38,7 +39,7 @@ public class DestinoSchedulingRegistration {
 
     private final InetIPv6Utils inetIPv6Utils;
 
-    private final DestinoSchedulingJobScanner jobScanner;
+    private final List<DestinoRegistrationCustomizer> registrationCustomizers;
 
     private final ObjectProvider<ServletWebServerApplicationContext> servletContextProvider;
 
@@ -46,14 +47,14 @@ public class DestinoSchedulingRegistration {
 
     public DestinoSchedulingRegistration(DestinoSchedulingExtProperties schedulingExtProperties,
                                          ApplicationContext context, InetUtils inetUtils, InetIPv6Utils inetIPv6Utils,
-                                         DestinoSchedulingJobScanner jobScanner,
+                                         List<DestinoRegistrationCustomizer> registrationCustomizers,
                                          ObjectProvider<ServletWebServerApplicationContext> servletContextProvider,
                                          ObjectProvider<ReactiveWebServerApplicationContext> reactiveContextProvider) {
         this.schedulingExtProperties = schedulingExtProperties;
         this.context = context;
         this.inetUtils = inetUtils;
         this.inetIPv6Utils = inetIPv6Utils;
-        this.jobScanner = jobScanner;
+        this.registrationCustomizers = registrationCustomizers;
         this.servletContextProvider = servletContextProvider;
         this.reactiveContextProvider = reactiveContextProvider;
 
@@ -81,21 +82,21 @@ public class DestinoSchedulingRegistration {
 
         Environment env = context.getEnvironment();
 
-        String endpointBasePath = env.getProperty(DestinoInstanceMetaKey.MANAGEMENT_ENDPOINT_BASE_PATH);
+        String endpointBasePath = env.getProperty(DestinoMetadataKey.MANAGEMENT_ENDPOINT_BASE_PATH);
         if (PredicateUtils.isNotEmpty(endpointBasePath)) {
-            metadata.put(DestinoInstanceMetaKey.MANAGEMENT_ENDPOINT_BASE_PATH, endpointBasePath);
+            metadata.put(DestinoMetadataKey.MANAGEMENT_ENDPOINT_BASE_PATH, endpointBasePath);
         }
 
         Integer managementPort = ManagementServerPortUtils.getPort(context);
         if (managementPort != null) {
-            metadata.put(DestinoInstanceMetaKey.MANAGEMENT_PORT, managementPort.toString());
+            metadata.put(DestinoMetadataKey.MANAGEMENT_PORT, managementPort.toString());
             String address = env.getProperty("management.server.address");
             if (PredicateUtils.isNotEmpty(address)) {
-                metadata.put(DestinoInstanceMetaKey.MANAGEMENT_ADDRESS, address);
+                metadata.put(DestinoMetadataKey.MANAGEMENT_ADDRESS, address);
             }
             String contextPath = env.getProperty("management.server.servlet.context-path");
             if (PredicateUtils.isNotEmpty(contextPath)) {
-                metadata.put(DestinoInstanceMetaKey.MANAGEMENT_CONTEXT_PATH, contextPath);
+                metadata.put(DestinoMetadataKey.MANAGEMENT_CONTEXT_PATH, contextPath);
             }
         }
 
@@ -141,12 +142,12 @@ public class DestinoSchedulingRegistration {
                 String ipv4Address = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
                 String ipv6Address = inetIPv6Utils.findIPv6Address();
                 if (PredicateUtils.isNotBlank(ipv6Address)) {
-                    schedulingExtProperties.getMetadata().put(DestinoInstanceMetaKey.IPV6, ipv6Address);
+                    schedulingExtProperties.getMetadata().put(DestinoMetadataKey.IPV6, ipv6Address);
                 }
                 return ipv4Address;
-            } else if (DestinoInstanceMetaKey.IPV4.equalsIgnoreCase(ipType)) {
+            } else if (DestinoMetadataKey.IPV4.equalsIgnoreCase(ipType)) {
                 return inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
-            } else if (DestinoInstanceMetaKey.IPV6.equalsIgnoreCase(ipType)) {
+            } else if (DestinoMetadataKey.IPV6.equalsIgnoreCase(ipType)) {
                 String ipv6Address = inetIPv6Utils.findIPv6Address();
                 if (PredicateUtils.isBlank(ipv6Address)) {
                     return inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
@@ -170,35 +171,42 @@ public class DestinoSchedulingRegistration {
         return schedulingExtProperties.getService();
     }
 
-    public RegisterInfo buildRegisterInfo() {
-        RegisterInfo registerInfo = new RegisterInfo();
-        registerInfo.setIp(schedulingExtProperties.getIp());
-        registerInfo.setWeight(schedulingExtProperties.getWeight());
-        registerInfo.setEnabled(schedulingExtProperties.isInstanceEnabled());
-        registerInfo.setCluster(schedulingExtProperties.getClusterName());
-        registerInfo.setJobs(jobScanner.loadJobs());
-        registerInfo.setMetadata(schedulingExtProperties.getMetadata());
+    public RegistrationInfo buildRegistrationInfo() {
+        RegistrationInfo registrationInfo = new RegistrationInfo();
+        registrationInfo.setIp(schedulingExtProperties.getIp());
+        registrationInfo.setWeight(schedulingExtProperties.getWeight());
+        registrationInfo.setEnabled(schedulingExtProperties.isInstanceEnabled());
+        registrationInfo.setCluster(schedulingExtProperties.getClusterName());
+        registrationInfo.setMetadata(schedulingExtProperties.getMetadata());
 
         if (schedulingExtProperties.getPort() > 0) {
-            registerInfo.setPort(schedulingExtProperties.getPort());
+            registrationInfo.setPort(schedulingExtProperties.getPort());
         } else {
             ServletWebServerApplicationContext servletContext = servletContextProvider.getIfAvailable();
             if (servletContext != null) {
-                registerInfo.setPort(servletContext.getWebServer().getPort());
+                registrationInfo.setPort(servletContext.getWebServer().getPort());
             }
             ReactiveWebServerApplicationContext reactiveContext = reactiveContextProvider.getIfAvailable();
             if (reactiveContext != null) {
-                registerInfo.setPort(reactiveContext.getWebServer().getPort());
+                registrationInfo.setPort(reactiveContext.getWebServer().getPort());
             }
         }
 
         if (null != schedulingExtProperties.getRegisterMode()) {
-            registerInfo.setMode(schedulingExtProperties.getRegisterMode());
+            registrationInfo.setMode(schedulingExtProperties.getRegisterMode());
         } else if (schedulingExtProperties.isSafety()) {
-            registerInfo.setMode(RegisterMode.SAFETY);
+            registrationInfo.setMode(RegisterMode.SAFETY);
+        } else {
+            registrationInfo.setMode(RegisterMode.QUICKLY);
         }
 
-        return registerInfo;
+        if (registrationCustomizers != null) {
+            for (DestinoRegistrationCustomizer registrationCustomizer : registrationCustomizers) {
+                registrationCustomizer.accept(registrationInfo);
+            }
+        }
+
+        return registrationInfo;
     }
 
 }

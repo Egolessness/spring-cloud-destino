@@ -2,9 +2,10 @@ package org.egolessness.cloud.scheduling;
 
 import org.egolessness.cloud.ConditionalOnDestinoSchedulingEnabled;
 import org.egolessness.cloud.DestinoSchedulingAutoConfiguration;
-import org.egolessness.destino.client.DestinoConfiguration;
 import org.egolessness.cloud.context.ConditionalOnDestinoEnabled;
+import org.egolessness.destino.client.DestinoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

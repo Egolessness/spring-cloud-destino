@@ -1,7 +1,7 @@
 package org.egolessness.cloud.loadbalancer;
 
 import org.egolessness.cloud.DestinoDiscoveryContext;
-import org.egolessness.cloud.instance.DestinoInstanceMetaKey;
+import org.egolessness.cloud.context.DestinoMetadataKey;
 import org.egolessness.cloud.context.util.InetAddressValidator;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.slf4j.Logger;
@@ -70,7 +70,7 @@ public abstract class AbstractDestinoLoadBalancer implements ReactorServiceInsta
 			String cluster = discoveryContext.getCluster();
 			if (PredicateUtils.isNotBlank(cluster)) {
 				Stream<ServiceInstance> sameClusterInstances = instances.stream()
-						.filter(instance -> Objects.equals(instance.getMetadata().get(DestinoInstanceMetaKey.CLUSTER), cluster));
+						.filter(instance -> Objects.equals(instance.getMetadata().get(DestinoMetadataKey.CLUSTER), cluster));
 				if (sameClusterInstances.findAny().isPresent()) {
 					instances = sameClusterInstances.collect(Collectors.toList());
 				}
@@ -89,7 +89,7 @@ public abstract class AbstractDestinoLoadBalancer implements ReactorServiceInsta
 
 	protected double getWeight(ServiceInstance instance) {
 		Map<String, String> metadata = instance.getMetadata();
-		String weightValue = metadata.get(DestinoInstanceMetaKey.WEIGHT);
+		String weightValue = metadata.get(DestinoMetadataKey.WEIGHT);
 		try {
 			if (PredicateUtils.isNotEmpty(weightValue)) {
 				return Double.parseDouble(weightValue);

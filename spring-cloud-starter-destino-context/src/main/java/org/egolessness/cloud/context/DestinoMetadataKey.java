@@ -1,11 +1,11 @@
-package org.egolessness.cloud.instance;
+package org.egolessness.cloud.context;
 
 /**
  * Destino service instance metadata common key.
  *
  * @author zsmjwk@outlook.com (wangkang)
  */
-public class DestinoInstanceMetaKey {
+public class DestinoMetadataKey {
 
     public static final String CLUSTER = "instance.cluster";
 

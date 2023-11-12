@@ -2,7 +2,7 @@ package org.egolessness.cloud.registry;
 
 import org.egolessness.destino.client.DestinoConfiguration;
 import org.egolessness.destino.client.registration.RegistrationService;
-import org.egolessness.destino.client.registration.message.RegisterInfo;
+import org.egolessness.destino.client.registration.message.RegistrationInfo;
 import org.egolessness.destino.common.exception.DestinoException;
 import org.egolessness.destino.common.utils.PredicateUtils;
 import org.slf4j.Logger;
@@ -39,14 +39,14 @@ public class DestinoSchedulingServiceRegistry implements SmartInitializingSingle
 		RegistrationService registrationService = destinoConfiguration.getRegistrationService();
 		String namespace = schedulingRegistration.getNamespace();
 		String group = schedulingRegistration.getGroup();
-		RegisterInfo registerInfo = schedulingRegistration.buildRegisterInfo();
+		RegistrationInfo registrationInfo = schedulingRegistration.buildRegistrationInfo();
 
 		try {
-			registrationService.register(namespace, group, service, registerInfo);
+			registrationService.register(namespace, group, service, registrationInfo);
 			log.info("Destino scheduling registry, {} {} {} {}:{} register finished.", namespace, group, service,
-					registerInfo.getIp(), registerInfo.getPort());
+					registrationInfo.getIp(), registrationInfo.getPort());
 		} catch (Exception e) {
-			log.warn("Destino scheduling registry. {} register failed...{},", service, registerInfo, e);
+			log.warn("Destino scheduling registry. {} register failed...{},", service, registrationInfo, e);
 		}
 	}
 
@@ -61,13 +61,13 @@ public class DestinoSchedulingServiceRegistry implements SmartInitializingSingle
 		RegistrationService registrationService = destinoConfiguration.getRegistrationService();
 		String namespace = schedulingRegistration.getNamespace();
 		String group = schedulingRegistration.getGroup();
-		RegisterInfo registerInfo = schedulingRegistration.buildRegisterInfo();
+		RegistrationInfo registrationInfo = schedulingRegistration.buildRegistrationInfo();
 
 		try {
-			registrationService.deregister(namespace, group, service, registerInfo.getIp(),
-					registerInfo.getPort(), registerInfo.getCluster());
+			registrationService.deregister(namespace, group, service, registrationInfo.getIp(),
+					registrationInfo.getPort(), registrationInfo.getCluster());
 		} catch (Exception e) {
-			log.error("Failed to deregister from destino scheduling...{},", registerInfo, e);
+			log.error("Failed to deregister from destino scheduling...{},", registrationInfo, e);
 		}
 
 		log.info("Destino scheduling, De-registration finished.");
