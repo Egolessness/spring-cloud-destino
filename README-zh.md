@@ -50,6 +50,21 @@ Spring Cloud Destino 已上传到 Maven Central，引入依赖即可。
 ````
 
 ## 配置示例
+```` yml
+spring:
+  cloud:
+    destino:
+      discovery:
+        address: 192.168.10.10:8200, 192.168.10.12:8300/base-ctx
+        namespace: qiwulun
+        group: dechongfu
+        cluster-name: yingdiwang
+        username: admin
+        password: admin
+      scheduling:
+        enabled: true
+        execute-thread-count: 4
+````
 
 ## 任务脚本额外依赖
 

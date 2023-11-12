@@ -51,7 +51,21 @@ dependencies.
 ````
 
 ## Config Examples
-
+```` yml
+spring:
+  cloud:
+    destino:
+      discovery:
+        address: 192.168.10.10:8200, 192.168.10.12:8300/base-ctx
+        namespace: qiwulun
+        group: dechongfu
+        cluster-name: yingdiwang
+        username: admin
+        password: admin
+      scheduling:
+        enabled: true
+        execute-thread-count: 4
+````
 
 ## Additional Dependencies For Script
 
