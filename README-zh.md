@@ -3,25 +3,24 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Maven Central](https://img.shields.io/maven-central/v/org.eglessness.cloud/spring-cloud-destino-dependencies.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:org.egolessness.cloud%20AND%20a:spring-cloud-destino-dependencies)
 
-English | [简体中文](./README-zh.md)
+[English](./README.md) | 简体中文
 
 README:
 
-- [Introduction](#introduction)
-- [How to Use](#how-to-use)
-- [Config Examples](#config-examples)
-- [Additional Dependencies For Script](#additional-dependencies-for-script)
+- [介绍](#介绍)
+- [使用示例](#使用示例)
+- [配置示例](#配置示例)
+- [任务脚本额外依赖](#任务脚本额外依赖)
 
-## Introduction
+## 介绍
 
-Spring Cloud Destino is a microservice quick starter which implements Spring Cloud SPI.
+Spring Cloud Destino 是基于 Spring Cloud SPI 实现的服务发现及任务调度的 Quick Starter
 
-## How to Use
+## 使用示例
 
-Spring Cloud Destino have been released to the Maven Central repository, just need to import
-dependencies.
+Spring Cloud Destino 已上传到 Maven Central，引入依赖即可。
 
-> Supported Version: Spring Cloud 2021.0
+> 已支持Spring Cloud 版本：2021.0
 
 ```` xml  
     <!-- spring-cloud-destino bom  -->
@@ -50,15 +49,14 @@ dependencies.
     </dependencies>
 ````
 
-## Config Examples
+## 配置示例
 
+## 任务脚本额外依赖
 
-## Additional Dependencies For Script
+Spring Cloud Destino 本着简约理念，未集成任务脚本所需依赖，如需要可自行引入(符合JSR-223规范)
 
-Spring Cloud Destino is not import dependencies for script job. If necessary, can be imported independently (in accordance with JSR-223 specifications).
-
-**Additional Import for Groovy Script**
-```` 
+**执行Groovy脚本额外引入**
+````
     <dependencies>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -74,7 +72,7 @@ Spring Cloud Destino is not import dependencies for script job. If necessary, ca
 
 ````
 
-**Additional Import for Python Script**
+**执行Python脚本额外引入**
 ````
     <dependencies>
         <dependency>
