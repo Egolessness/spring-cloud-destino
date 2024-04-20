@@ -2,19 +2,12 @@ plugins {
     id 'java-library'
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    api "org.egolessness.destino:destino-common:${destino_version}"
-    api "org.egolessness.destino:destino-client:${destino_version}"
-
-    implementation "org.egolessness.cloud:spring-cloud-starter-destino-context:${version}"
-    implementation "org.egolessness.cloud:spring-cloud-starter-destino-discovery:${version}"
-    implementation "org.egolessness.cloud:spring-cloud-starter-destino-scheduling:${version}"
-}
-
-test {
-    useJUnitPlatform()
+    constraints {
+        api "org.egolessness.destino:destino-common:${destino_version}"
+        api "org.egolessness.destino:destino-client:${destino_version}"
+        api "org.egolessness.cloud:spring-cloud-starter-destino-context:${version}"
+        api "org.egolessness.cloud:spring-cloud-starter-destino-discovery:${version}"
+        api "org.egolessness.cloud:spring-cloud-starter-destino-scheduling:${version}"
+    }
 }
