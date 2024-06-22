@@ -37,7 +37,8 @@ public class DestinoServiceDiscovery {
 	public List<ServiceInstance> getInstances(String serviceId) throws DestinoException {
 		String namespace = discoveryProperties.getNamespace();
 		String group = discoveryProperties.getGroup();
-		InstanceSelector instancesSelector = configuration.getConsultationService().subscribeService(namespace, group, serviceId);
+		InstanceSelector instancesSelector = configuration.getConsultationService().subscribeService(namespace, group,
+				serviceId, new String[0]);
 		return instancesSelector.getHealthyInstances().stream()
 				.filter(instance -> instance != null && instance.isEnabled() && instance.isHealthy())
 				.map(instance -> DestinoInstanceConverter.INSTANCE.apply(instance, serviceId))

@@ -1,14 +1,14 @@
-allprojects {
-    apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'com.vanniktech.maven.publish' apply false
+}
 
+allprojects {
     repositories {
-        maven {
-            url "https://s01.oss.sonatype.org/content/repositories/snapshots"
-            mavenContent {
-                snapshotsOnly()
-            }
+        maven{
+            url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
-        maven{url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+        mavenLocal()
         mavenCentral()
     }
 }
