@@ -19,7 +19,6 @@ package org.egolessness.cloud.properties;
 import org.egolessness.destino.client.properties.BackupProperties;
 import org.egolessness.destino.client.properties.FailoverProperties;
 import org.egolessness.destino.common.enumeration.RegisterMode;
-import org.egolessness.destino.common.utils.PredicateUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.*;

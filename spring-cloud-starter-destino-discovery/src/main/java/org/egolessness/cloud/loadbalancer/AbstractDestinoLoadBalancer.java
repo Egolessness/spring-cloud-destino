@@ -73,7 +73,7 @@ public abstract class AbstractDestinoLoadBalancer implements ReactorServiceInsta
 	@Override
 	public Mono<Response<ServiceInstance>> choose(Request request) {
 		ServiceInstanceListSupplier supplier = instanceListSupplierProvider.getIfAvailable(NoopServiceInstanceListSupplier::new);
-		return supplier.get(request).next().map(this::convertInstanceResponse);
+		return supplier.get(request).next().mapNotNull(this::convertInstanceResponse);
 	}
 
 	private Response<ServiceInstance> convertInstanceResponse(List<ServiceInstance> instances) {
