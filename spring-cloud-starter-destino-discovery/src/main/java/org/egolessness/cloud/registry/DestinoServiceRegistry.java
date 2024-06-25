@@ -138,8 +138,7 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 		String group = discoveryProperties.getGroup();
 		try {
 			ConsultationService consultationService = destinoConfiguration.getConsultationService();
-			InstanceSelector instanceSelector = consultationService.subscribeService(namespace, group, serviceId,
-					new String[0]);
+			InstanceSelector instanceSelector = consultationService.subscribeService(namespace, group, serviceId);
 			List<ServiceInstance> instances = instanceSelector.getAllInstances();
 			for (ServiceInstance instance : instances) {
 				if (instance.getIp().equalsIgnoreCase(discoveryProperties.getIp())

@@ -54,7 +54,7 @@ public class DestinoServiceDiscovery {
 		String namespace = discoveryProperties.getNamespace();
 		String group = discoveryProperties.getGroup();
 		InstanceSelector instancesSelector = configuration.getConsultationService().subscribeService(namespace, group,
-				serviceId, new String[0]);
+				serviceId);
 		return instancesSelector.getHealthyInstances().stream()
 				.filter(instance -> instance != null && instance.isEnabled() && instance.isHealthy())
 				.map(instance -> DestinoInstanceConverter.INSTANCE.apply(instance, serviceId))
