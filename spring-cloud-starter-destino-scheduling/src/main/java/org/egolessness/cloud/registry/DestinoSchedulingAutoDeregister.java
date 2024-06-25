@@ -26,6 +26,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.lang.NonNull;
 
+/**
+ * Destino service auto deregister.
+ *
+ * @author zsmjwk@outlook.com (wangkang)
+ */
 public class DestinoSchedulingAutoDeregister implements ApplicationListener<ContextClosedEvent> {
 
     private static final Logger log = LoggerFactory.getLogger(DestinoSchedulingAutoRegister.class);

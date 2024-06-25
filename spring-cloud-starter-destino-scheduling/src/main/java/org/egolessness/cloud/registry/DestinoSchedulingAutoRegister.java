@@ -26,6 +26,11 @@ import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.lang.NonNull;
 
+/**
+ * Destino service auto register.
+ *
+ * @author zsmjwk@outlook.com (wangkang)
+ */
 public class DestinoSchedulingAutoRegister implements ApplicationListener<WebServerInitializedEvent> {
 
     private static final Logger log = LoggerFactory.getLogger(DestinoSchedulingAutoRegister.class);
