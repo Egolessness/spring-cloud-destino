@@ -8,16 +8,23 @@
   ],
   "properties": [
     {
-      "name": "spring.cloud.destino.address",
-      "type": "java.util.List<java.lang.String>",
-      "defaultValue": "127.0.0.1:8200",
-      "description": "destino server address list.",
+      "name": "spring.cloud.destino.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": "true",
+      "description": "destino enabled.",
       "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
     },
     {
-      "name": "spring.cloud.destino.address-provider",
+      "name": "spring.cloud.destino.servers",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": "127.0.0.1:8200",
+      "description": "destino server list.",
+      "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
+    },
+    {
+      "name": "spring.cloud.destino.servers-provider",
       "type": "java.lang.String",
-      "description": "destino server address provider url.",
+      "description": "destino servers provider url.",
       "sourceType": "org.egolessness.cloud.context.properties.DestinoContextProperties"
     },
     {

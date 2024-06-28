@@ -34,14 +34,14 @@ import static org.egolessness.destino.common.constant.DefaultConstants.*;
 public class DestinoDiscoveryProperties {
 
 	/**
-	 * server address.
+	 * servers.
 	 */
-	private List<String> address;
+	private List<String> servers;
 
 	/**
-	 * read server addresses from provider url.
+	 * read servers from provider url.
 	 */
-	private String addressProvider;
+	private String serversProvider;
 
 	/**
 	 * authentication username.
@@ -186,20 +186,20 @@ public class DestinoDiscoveryProperties {
 	 */
 	private String logLevel;
 
-	public List<String> getAddress() {
-		return address;
+	public List<String> getServers() {
+		return servers;
 	}
 
-	public void setAddress(List<String> address) {
-		this.address = address;
+	public void setServers(List<String> servers) {
+		this.servers = servers;
 	}
 
-	public String getAddressProvider() {
-		return addressProvider;
+	public String getServersProvider() {
+		return serversProvider;
 	}
 
-	public void setAddressProvider(String addressProvider) {
-		this.addressProvider = addressProvider;
+	public void setServersProvider(String serversProvider) {
+		this.serversProvider = serversProvider;
 	}
 
 	public String getUsername() {
@@ -429,8 +429,8 @@ public class DestinoDiscoveryProperties {
 	@Override
 	public String toString() {
 		return "DestinoDiscoveryProperties{" +
-				"address=" + address +
-				", addressProvider='" + addressProvider + '\'' +
+				"servers=" + servers +
+				", serversProvider='" + serversProvider + '\'' +
 				", username='" + username + '\'' +
 				", password='" + password + '\'' +
 				", encryptedPassword='" + encryptedPassword + '\'' +

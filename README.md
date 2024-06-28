@@ -56,7 +56,7 @@ spring:
   cloud:
     destino:
       discovery:
-        address: 192.168.10.10:8200, 192.168.10.12:8300/base-ctx
+        servers: 192.168.10.10:8200, 192.168.10.12:8300/base-ctx
         namespace: qiwulun
         group: dechongfu
         cluster-name: yingdiwang

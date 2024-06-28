@@ -8,17 +8,24 @@
   ],
   "properties": [
     {
-      "name": "spring.cloud.destino.discovery.address",
-      "type": "java.util.List<java.lang.String>",
-      "defaultValue": "${spring.cloud.destino.address}",
-      "description": "destino server address list.",
+      "name": "spring.cloud.destino.discovery.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "enable destino discovery or not.",
       "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
     },
     {
-      "name": "spring.cloud.destino.discovery.address-provider",
+      "name": "spring.cloud.destino.discovery.servers",
+      "type": "java.util.List<java.lang.String>",
+      "defaultValue": "${spring.cloud.destino.servers}",
+      "description": "destino server list.",
+      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
+    },
+    {
+      "name": "spring.cloud.destino.discovery.servers-provider",
       "type": "java.lang.String",
-      "defaultValue": "${spring.cloud.destino.address-provider}",
-      "description": "destino server address provider url.",
+      "defaultValue": "${spring.cloud.destino.servers-provider}",
+      "description": "destino servers provider url.",
       "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
     },
     {
@@ -88,13 +95,6 @@
       "name": "spring.cloud.destino.discovery.port",
       "type": "java.lang.Integer",
       "description": "the service port to register.",
-      "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
-    },
-    {
-      "name": "spring.cloud.destino.discovery.enabled",
-      "type": "java.lang.Boolean",
-      "defaultValue": true,
-      "description": "enable destino discovery or not.",
       "sourceType": "org.egolessness.cloud.properties.DestinoDiscoveryProperties"
     },
     {

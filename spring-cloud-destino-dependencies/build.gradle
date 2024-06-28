@@ -1,6 +1,10 @@
 plugins {
-    id 'java-library'
+    id 'java-platform'
     id 'com.vanniktech.maven.publish'
+}
+
+javaPlatform {
+    allowDependencies()
 }
 
 dependencies {

@@ -35,15 +35,20 @@ import java.util.List;
 public class DestinoContextProperties {
 
     /**
-     * destino server address.
+     * destino enabled;
      */
-    private List<String> address;
+    private boolean enabled = true;
 
     /**
-     * the domain name of a service, through which the server address can be dynamically
+     * destino servers.
+     */
+    private List<String> servers;
+
+    /**
+     * the domain name of a service, through which the servers can be dynamically
      * obtained.
      */
-    private String addressProvider;
+    private String serversProvider;
 
     /**
      * namespace.
@@ -75,20 +80,28 @@ public class DestinoContextProperties {
 
     private ReceiverProperties receiver;
 
-    public List<String> getAddress() {
-        return address;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setAddress(List<String> address) {
-        this.address = address;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getAddressProvider() {
-        return addressProvider;
+    public List<String> getServers() {
+        return servers;
     }
 
-    public void setAddressProvider(String addressProvider) {
-        this.addressProvider = addressProvider;
+    public void setServers(List<String> servers) {
+        this.servers = servers;
+    }
+
+    public String getServersProvider() {
+        return serversProvider;
+    }
+
+    public void setServersProvider(String serversProvider) {
+        this.serversProvider = serversProvider;
     }
 
     public String getNamespace() {
@@ -165,8 +178,8 @@ public class DestinoContextProperties {
 
     public DestinoProperties toDestinoProperties(List<DestinoPropertiesCompleter> completerList) throws DestinoException {
         DestinoProperties properties = new DestinoProperties();
-        properties.setAddresses(address);
-        properties.setAddressesProviderUrl(addressProvider);
+        properties.setServers(servers);
+        properties.setServersProviderUrl(serversProvider);
         properties.setUsername(username);
         properties.setPassword(password);
         properties.setEncryptedPassword(encryptedPassword);

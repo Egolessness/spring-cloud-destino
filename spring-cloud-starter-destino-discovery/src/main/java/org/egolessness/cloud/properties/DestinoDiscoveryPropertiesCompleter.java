@@ -36,13 +36,13 @@ public class DestinoDiscoveryPropertiesCompleter implements DestinoPropertiesCom
 
     @Override
     public void complete(DestinoProperties properties) {
-        if (PredicateUtils.isNotEmpty(discoveryProperties.getAddress())) {
-            for (String address : discoveryProperties.getAddress()) {
-                properties.addAddress(address);
+        if (PredicateUtils.isNotEmpty(discoveryProperties.getServers())) {
+            for (String server : discoveryProperties.getServers()) {
+                properties.addServer(server);
             }
         }
-        if (PredicateUtils.isBlank(properties.getAddressesProviderUrl())) {
-            properties.setAddressesProviderUrl(properties.getAddressesProviderUrl());
+        if (PredicateUtils.isBlank(properties.getServersProviderUrl())) {
+            properties.setServersProviderUrl(properties.getServersProviderUrl());
         }
         if (PredicateUtils.isEmpty(properties.getUsername())) {
             properties.setUsername(discoveryProperties.getUsername());

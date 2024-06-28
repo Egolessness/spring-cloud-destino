@@ -35,13 +35,13 @@ public class DestinoSchedulingExtPropertiesCompleter implements DestinoPropertie
 
     @Override
     public void complete(DestinoProperties properties) {
-        if (PredicateUtils.isNotEmpty(schedulingExtProperties.getAddress())) {
-            for (String address : schedulingExtProperties.getAddress()) {
-                properties.addAddress(address);
+        if (PredicateUtils.isNotEmpty(schedulingExtProperties.getServers())) {
+            for (String server : schedulingExtProperties.getServers()) {
+                properties.addServer(server);
             }
         }
-        if (PredicateUtils.isBlank(properties.getAddressesProviderUrl())) {
-            properties.setAddressesProviderUrl(properties.getAddressesProviderUrl());
+        if (PredicateUtils.isBlank(properties.getServersProviderUrl())) {
+            properties.setServersProviderUrl(properties.getServersProviderUrl());
         }
         if (PredicateUtils.isEmpty(properties.getUsername())) {
             properties.setUsername(schedulingExtProperties.getUsername());
