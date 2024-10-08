@@ -49,7 +49,7 @@ public class DestinoSchedulingJobScanner {
     private final ApplicationContext applicationContext;
 
     public DestinoSchedulingJobScanner(DestinoConfiguration destinoConfiguration, ApplicationContext applicationContext) {
-        this.localSchedulingService = destinoConfiguration.getLocalScheduledService();
+        this.localSchedulingService = destinoConfiguration.getLocalSchedulingService();
         this.applicationContext = applicationContext;
     }
 

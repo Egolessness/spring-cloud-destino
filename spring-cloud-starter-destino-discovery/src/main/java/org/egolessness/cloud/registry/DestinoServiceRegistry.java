@@ -100,7 +100,7 @@ public class DestinoServiceRegistry implements ServiceRegistry<DestinoRegistrati
 			registrationService.deregister(namespace, group, serviceId, registration.getHost(),
 					registration.getPort(), clusterName);
 		} catch (Exception e) {
-			log.error("ERR_DESTINY_DEREGISTER, deregister failed...{},", registration, e);
+			log.error("ERR_DESTINO_DEREGISTER, deregister failed...{},", registration, e);
 		}
 
 		log.info("De-registration finished.");
